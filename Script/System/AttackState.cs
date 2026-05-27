@@ -1,0 +1,111 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+namespace EMO
+{
+    public class AttackState : State
+    {
+        public RotateTowardsTargetState rotateTowardsTargetState;
+        public CombatStanceState combatStanceState;
+        public PursueTargetState pursueTargetState;
+        public EnemyAttackAction currentAttack;
+
+        bool willDoComboOnNextAttack = false;
+        public bool hasPerformeAttack = false;
+
+        public override State Tick(EnemyManager enemyManager, EnemyStatsManager enemyStats, EnemyAnimatorManager enemyAnimatorManager)
+        {
+            float distanceFromTarget = Vector3.Distance(enemyManager.currentTarget.transform.position, enemyManager.transform.position);
+            
+            RotateTowardsTargetWhilstAttacking(enemyManager);
+
+            if (distanceFromTarget > enemyManager.maximumAggroRadius)
+            {
+                return pursueTargetState;
+            }
+
+            if (willDoComboOnNextAttack && enemyManager.canDoCombo)
+            {
+                //連續攻擊
+                AttackTargetWithCombo(enemyAnimatorManager, enemyManager);
+                //設定冷卻時間
+                enemyManager.currentRecoveryTime = currentAttack.recoveryTime;
+            }
+            if (!hasPerformeAttack)
+            {
+                //攻擊
+                AttackTarget(enemyAnimatorManager, enemyManager);
+                //骰連擊
+                RollForComboChance(enemyManager);
+            }
+            if (willDoComboOnNextAttack && hasPerformeAttack)
+            {
+                return this;
+            }
+
+            return rotateTowardsTargetState;
+
+        }
+        
+        private void AttackTarget(EnemyAnimatorManager enemyAnimatorManager, EnemyManager enemyManager)
+        {
+            enemyAnimatorManager.animator.SetBool("isUsingRightHand", currentAttack.isRightHandedAction);
+            enemyAnimatorManager.animator.SetBool("isUsingLeftHand", currentAttack.isRightHandedAction);
+            enemyAnimatorManager.PlayTargetAnimation(currentAttack.actionAnimation, true);
+            enemyAnimatorManager.PlayWeaponTrailFX();
+            enemyManager.currentRecoveryTime = currentAttack.recoveryTime;
+            hasPerformeAttack = true;
+        }
+
+        private void AttackTargetWithCombo(EnemyAnimatorManager enemyAnimatorManager, EnemyManager enemyManager)
+        {
+            enemyAnimatorManager.animator.SetBool("isUsingRightHand", currentAttack.isRightHandedAction);
+            enemyAnimatorManager.animator.SetBool("isUsingLeftHand", currentAttack.isRightHandedAction);
+            willDoComboOnNextAttack = false;
+            enemyAnimatorManager.PlayTargetAnimation(currentAttack.actionAnimation, true);
+            enemyAnimatorManager.PlayWeaponTrailFX();
+            enemyManager.currentRecoveryTime = currentAttack.recoveryTime;
+            currentAttack = null;
+        }
+        private void RotateTowardsTargetWhilstAttacking(EnemyManager enemyManager)
+        {
+            // 轉動
+            if (enemyManager.canRotate && enemyManager.isInteracting)
+            {
+                Vector3 direction = enemyManager.currentTarget.transform.position - transform.position;
+                direction.y = 0;
+                direction.Normalize();
+
+                if (direction == Vector3.zero)
+                {
+                    direction = transform.forward;
+                }
+
+                Quaternion targetRotation = Quaternion.LookRotation(direction);
+                enemyManager.transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, enemyManager.rotationSpeed);
+            }
+        }
+
+        private void RollForComboChance(EnemyManager enemyManager)
+        {
+            float comboChance = Random.Range(0, 100);
+
+            if(enemyManager.allowAIToPerformCombos && comboChance <= enemyManager.comboLikelyHood)
+            {
+                if (currentAttack.comboAction != null)
+                {
+                    willDoComboOnNextAttack = true;
+                    currentAttack = currentAttack.comboAction;
+                }
+                else
+                {
+                    willDoComboOnNextAttack = false;
+                    currentAttack = null;
+                }
+            }
+        }
+
+    }
+}
+
