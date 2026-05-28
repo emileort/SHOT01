@@ -1,0 +1,151 @@
+﻿<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProjectGuid>{96C0BF87-7E94-4580-8E53-FF6C8D286264}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <NoStandardLibraries>false</NoStandardLibraries>
+    <AssemblyName>ConsoleApplication</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup>
+    <RootNamespace>SHOTGAME</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include=".vs\ProjectSettings.json" />
+    <None Include=".vs\Scripts\v16\.suo" />
+    <None Include=".vs\slnx.sqlite" />
+    <None Include=".vs\VSWorkspaceState.json" />
+    <None Include="AN.meta" />
+    <None Include="AN\Button.meta" />
+    <None Include="AN\Button\Button %28Legacy%29.controller" />
+    <None Include="AN\Button\Button %28Legacy%29.controller.meta" />
+    <None Include="AN\WaveUI.meta" />
+    <None Include="AN\WaveUI\show.anim" />
+    <None Include="AN\WaveUI\show.anim.meta" />
+    <None Include="AN\WaveUI\回合UI.controller" />
+    <None Include="AN\WaveUI\回合UI.controller.meta" />
+    <None Include="Audio.meta" />
+    <None Include="Audio\AudioManager.cs.meta" />
+    <None Include="Character.meta" />
+    <None Include="Character\Character.cs.meta" />
+    <None Include="Enemtes.meta" />
+    <None Include="Enemtes\.vs\Enemtes\v16\.suo" />
+    <None Include="Enemtes\.vs\ProjectSettings.json" />
+    <None Include="Enemtes\.vs\slnx.sqlite" />
+    <None Include="Enemtes\.vs\VSWorkspaceState.json" />
+    <None Include="Enemtes\Enemy.cs.meta" />
+    <None Include="Enemtes\EnemyController.cs.meta" />
+    <None Include="Input.meta" />
+    <None Include="Input\InputActions.cs.meta" />
+    <None Include="Input\PlayerInput.asset" />
+    <None Include="Input\PlayerInput.asset.meta" />
+    <None Include="Input\PlayerInput.cs.meta" />
+    <None Include="Miscs.meta" />
+    <None Include="Miscs\AutoDeactivate.cs.meta" />
+    <None Include="Miscs\BackgroundScroller.cs.meta" />
+    <None Include="Miscs\LightFade.cs.meta" />
+    <None Include="Miscs\Viewport.cs.meta" />
+    <None Include="Player.meta" />
+    <None Include="Player\Player.cs.meta" />
+    <None Include="Player\PlayerEnergy.cs.meta" />
+    <None Include="Player\PlayerOverdrive.cs.meta" />
+    <None Include="PoolSystem.meta" />
+    <None Include="PoolSystem\Pool.cs.meta" />
+    <None Include="PoolSystem\PoolManager.cs.meta" />
+    <None Include="Projectile.meta" />
+    <None Include="Projectile\EnemyProjectile.cs.meta" />
+    <None Include="Projectile\EnemyProjectile_Aiming.cs.meta" />
+    <None Include="Projectile\PlayerProjectile.cs.meta" />
+    <None Include="Projectile\PlayerProjectileOverdrive.cs.meta" />
+    <None Include="Projectile\Projectile.cs.meta" />
+    <None Include="Projectile\ProjectileGuidanceSystem.cs.meta" />
+    <None Include="SimpleCameraController.cs.meta" />
+    <None Include="SystemModules.meta" />
+    <None Include="SystemModules\EnemyManager.cs.meta" />
+    <None Include="SystemModules\PersistentSingleton.cs.meta" />
+    <None Include="SystemModules\SceneLoader.cs.meta" />
+    <None Include="SystemModules\ScoreManager.cs.meta" />
+    <None Include="SystemModules\Singleton.cs.meta" />
+    <None Include="SystemModules\TimeController.cs.meta" />
+    <None Include="UI.meta" />
+    <None Include="UI\EnergyBar.cs.meta" />
+    <None Include="UI\GameplayUIController.cs.meta" />
+    <None Include="UI\MainMenuUIController.cs.meta" />
+    <None Include="UI\ScoreDisplay.cs.meta" />
+    <None Include="UI\StatsBar.cs.meta" />
+    <None Include="UI\StatsBar_HUD.cs.meta" />
+    <None Include="UI\WaveUI.cs.meta" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Audio\AudioManager.cs" />
+    <Compile Include="Character\Character.cs" />
+    <Compile Include="Enemtes\Enemy.cs" />
+    <Compile Include="Enemtes\EnemyController.cs" />
+    <Compile Include="Input\InputActions.cs" />
+    <Compile Include="Input\PlayerInput.cs" />
+    <Compile Include="Miscs\AutoDeactivate.cs" />
+    <Compile Include="Miscs\BackgroundScroller.cs" />
+    <Compile Include="Miscs\LightFade.cs" />
+    <Compile Include="Miscs\Viewport.cs" />
+    <Compile Include="Player\Player.cs" />
+    <Compile Include="Player\PlayerEnergy.cs" />
+    <Compile Include="Player\PlayerOverdrive.cs" />
+    <Compile Include="PoolSystem\Pool.cs" />
+    <Compile Include="PoolSystem\PoolManager.cs" />
+    <Compile Include="Projectile\EnemyProjectile.cs" />
+    <Compile Include="Projectile\EnemyProjectile_Aiming.cs" />
+    <Compile Include="Projectile\PlayerProjectile.cs" />
+    <Compile Include="Projectile\PlayerProjectileOverdrive.cs" />
+    <Compile Include="Projectile\Projectile.cs" />
+    <Compile Include="Projectile\ProjectileGuidanceSystem.cs" />
+    <Compile Include="SimpleCameraController.cs" />
+    <Compile Include="SystemModules\EnemyManager.cs" />
+    <Compile Include="SystemModules\PersistentSingleton.cs" />
+    <Compile Include="SystemModules\SceneLoader.cs" />
+    <Compile Include="SystemModules\ScoreManager.cs" />
+    <Compile Include="SystemModules\Singleton.cs" />
+    <Compile Include="SystemModules\TimeController.cs" />
+    <Compile Include="UI\EnergyBar.cs" />
+    <Compile Include="UI\GameplayUIController.cs" />
+    <Compile Include="UI\MainMenuUIController.cs" />
+    <Compile Include="UI\ScoreDisplay.cs" />
+    <Compile Include="UI\StatsBar.cs" />
+    <Compile Include="UI\StatsBar_HUD.cs" />
+    <Compile Include="UI\WaveUI.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSHARP.Targets" />
+  <ProjectExtensions>
+    <VisualStudio AllowExistingFolder="true" />
+  </ProjectExtensions>
+</Project>
